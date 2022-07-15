@@ -8,4 +8,5 @@ public interface ITeamService {
     public Mono<TeamDto> createTeam(TeamDto teamDto);
     public Flux<TeamDto> getAllTeams();
     public Mono<TeamDto> getTeamById(String id);
+    public Mono<TeamDto> updateTeam(TeamDto teamDto);
 }

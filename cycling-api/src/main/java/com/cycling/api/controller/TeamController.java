@@ -57,4 +57,18 @@ public class TeamController {
             throw  new RuntimeException("Error getting team");
         }
     }
+
+    @PutMapping("/update")
+    public Mono<ResponseEntity<Mono<TeamDto>>> updateTeam(@RequestBody TeamDto teamDto) {
+        try {
+            return Mono.just(
+                    ResponseEntity
+                            .ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(teamService.updateTeam(teamDto))
+            );
+        } catch (Exception e) {
+            throw  new RuntimeException("Error updating team");
+        }
+    }
 }

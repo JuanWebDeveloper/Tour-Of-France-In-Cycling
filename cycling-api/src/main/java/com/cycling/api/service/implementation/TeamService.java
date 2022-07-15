@@ -45,4 +45,18 @@ public class TeamService implements ITeamService {
                         .fromTeamToTeamDto()
         );
     }
+
+    @Override
+    public Mono<TeamDto> updateTeam(TeamDto teamDto) {
+        return teamRepository.findById(teamDto.getId_team())
+                .flatMap(team -> {
+                        team.setName_team(teamDto.getName_team());
+                        team.setCode_team(teamDto.getCode_team());
+                        team.setCountry_team(teamDto.getCountry_team());
+                        return teamRepository.save(team);
+                })
+                .map(teamMapper
+                        .fromTeamToTeamDto()
+        );
+    }
 }

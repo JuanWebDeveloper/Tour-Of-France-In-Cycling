@@ -44,14 +44,14 @@ public class TeamController {
         }
     }
 
-    @GetMapping("/getTeam/{id}")
-    public Mono<ResponseEntity<Mono<TeamDto>>> getTeamById(@PathVariable("id") String id) {
+    @GetMapping("/getTeam/{id_team}")
+    public Mono<ResponseEntity<Mono<TeamDto>>> getTeamById(@PathVariable("id_team") String id_team) {
         try {
             return Mono.just(
                     ResponseEntity
                             .ok()
                             .contentType(MediaType.APPLICATION_JSON)
-                            .body(teamService.getTeamById(id))
+                            .body(teamService.getTeamById(id_team))
             );
         } catch (Exception e) {
             throw  new RuntimeException("Error getting team");
@@ -69,6 +69,20 @@ public class TeamController {
             );
         } catch (Exception e) {
             throw  new RuntimeException("Error updating team");
+        }
+    }
+
+    @DeleteMapping("/delete/{id_team}")
+    public Mono<ResponseEntity<Mono<Void>>> deleteTeam(@PathVariable("id_team") String id_team) {
+        try {
+            return Mono.just(
+                    ResponseEntity
+                            .ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(teamService.deleteTeam(id_team))
+            );
+        } catch (Exception e) {
+            throw  new RuntimeException("Error deleting team");
         }
     }
 }

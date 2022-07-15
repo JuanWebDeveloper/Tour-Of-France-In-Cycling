@@ -9,4 +9,5 @@ public interface ITeamService {
     public Flux<TeamDto> getAllTeams();
     public Mono<TeamDto> getTeamById(String id);
     public Mono<TeamDto> updateTeam(TeamDto teamDto);
+    public Mono<Void> deleteTeam(String id);
 }

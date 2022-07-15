@@ -39,8 +39,8 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public Mono<TeamDto> getTeamById(String id) {
-        return teamRepository.findById(id)
+    public Mono<TeamDto> getTeamById(String id_team) {
+        return teamRepository.findById(id_team)
                 .map(teamMapper
                         .fromTeamToTeamDto()
         );
@@ -58,5 +58,10 @@ public class TeamService implements ITeamService {
                 .map(teamMapper
                         .fromTeamToTeamDto()
         );
+    }
+
+    @Override
+    public Mono<Void> deleteTeam(String id_team) {
+        return teamRepository.deleteById(id_team);
     }
 }

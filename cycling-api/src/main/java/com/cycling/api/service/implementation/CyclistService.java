@@ -45,4 +45,18 @@ public class CyclistService implements ICyclistService {
                         .fromCyclistToCyclistDto()
         );
     }
+
+    @Override
+    public Mono<CyclistDto> updateCyclist(CyclistDto cyclistDto) {
+        return cyclistRepository.findById(cyclistDto.getId_cyclist())
+                .flatMap(cyclist -> {
+                        cyclist.setName_cyclist(cyclistDto.getName_cyclist());
+                        cyclist.setNumber_cyclist(cyclistDto.getNumber_cyclist());
+                        cyclist.setCountry_cyclist(cyclistDto.getCountry_cyclist());
+                        return cyclistRepository.save(cyclist);
+                })
+                .map(cyclistMapper
+                        .fromCyclistToCyclistDto()
+        );
+    }
 }

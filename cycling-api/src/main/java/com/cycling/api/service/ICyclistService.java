@@ -8,5 +8,6 @@ public interface ICyclistService {
     public Mono<CyclistDto> createCyclist(CyclistDto cyclistDto);
     public Flux<CyclistDto> getAllCyclists();
     public Mono<CyclistDto> getCyclistById(String id_cyclist);
+    public Mono<CyclistDto> updateCyclist(CyclistDto cyclistDto);
 
 }

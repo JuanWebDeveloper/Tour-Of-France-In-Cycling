@@ -57,4 +57,17 @@ public class CyclistController {
         }
     }
 
+    @PutMapping("/update")
+    public Mono<ResponseEntity<Mono<CyclistDto>>> updateCyclist(@RequestBody CyclistDto cyclistDto) {
+        try {
+            return Mono.just(
+                    ResponseEntity.ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(cyclistService.updateCyclist(cyclistDto))
+            );
+        } catch (Exception e) {
+            throw  new RuntimeException("Error updating cyclist");
+        }
+    }
+
 }

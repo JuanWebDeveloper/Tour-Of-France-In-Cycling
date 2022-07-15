@@ -59,4 +59,9 @@ public class CyclistService implements ICyclistService {
                         .fromCyclistToCyclistDto()
         );
     }
+
+    @Override
+    public Mono<Void> deleteCyclist(String id_cyclist) {
+        return cyclistRepository.deleteById(id_cyclist);
+    }
 }

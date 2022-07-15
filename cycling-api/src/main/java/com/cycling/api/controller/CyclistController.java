@@ -70,4 +70,17 @@ public class CyclistController {
         }
     }
 
+    @DeleteMapping("/delete/{id_cyclist}")
+    public Mono<ResponseEntity<Mono<Void>>> deleteCyclist(@PathVariable("id_cyclist") String id_cyclist) {
+        try {
+            return Mono.just(
+                    ResponseEntity.ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(cyclistService.deleteCyclist(id_cyclist))
+            );
+        } catch (Exception e) {
+            throw  new RuntimeException("Error deleting cyclist");
+        }
+    }
+
 }

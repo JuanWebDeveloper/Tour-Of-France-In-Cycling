@@ -7,4 +7,5 @@ import reactor.core.publisher.Mono;
 public interface ITeamService {
     public Mono<TeamDto> createTeam(TeamDto teamDto);
     public Flux<TeamDto> getAllTeams();
+    public Mono<TeamDto> getTeamById(String id);
 }

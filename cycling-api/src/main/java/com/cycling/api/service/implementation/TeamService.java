@@ -13,7 +13,7 @@ import com.cycling.api.dto.TeamDto;
 public class TeamService implements ITeamService {
     @Autowired
     private TeamRepository teamRepository;
-    private TeamMapper teamMapper;
+    private final TeamMapper teamMapper;
 
     public TeamService() {
         this.teamMapper = new TeamMapper();
@@ -35,6 +35,14 @@ public class TeamService implements ITeamService {
                 .map(team -> teamMapper
                         .fromTeamToTeamDto()
                         .apply(team)
+        );
+    }
+
+    @Override
+    public Mono<TeamDto> getTeamById(String id) {
+        return teamRepository.findById(id)
+                .map(teamMapper
+                        .fromTeamToTeamDto()
         );
     }
 }

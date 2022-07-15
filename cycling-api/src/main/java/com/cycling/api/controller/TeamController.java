@@ -43,4 +43,18 @@ public class TeamController {
             throw  new RuntimeException("Error getting teams");
         }
     }
+
+    @GetMapping("/getTeam/{id}")
+    public Mono<ResponseEntity<Mono<TeamDto>>> getTeamById(@PathVariable("id") String id) {
+        try {
+            return Mono.just(
+                    ResponseEntity
+                            .ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(teamService.getTeamById(id))
+            );
+        } catch (Exception e) {
+            throw  new RuntimeException("Error getting team");
+        }
+    }
 }

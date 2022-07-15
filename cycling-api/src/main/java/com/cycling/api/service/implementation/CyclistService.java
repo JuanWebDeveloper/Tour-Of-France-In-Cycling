@@ -27,4 +27,12 @@ public class CyclistService implements ICyclistService {
                         .fromCyclistToCyclistDto()
         );
     }
+
+    @Override
+    public Mono<CyclistDto> getCyclistById(String id_cyclist) {
+        return cyclistRepository.findById(id_cyclist)
+                .map(cyclistMapper
+                        .fromCyclistToCyclistDto()
+        );
+    }
 }

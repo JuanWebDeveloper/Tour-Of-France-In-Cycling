@@ -28,4 +28,18 @@ public class CyclistController {
             throw  new RuntimeException("Error creating cyclist");
         }
     }
+
+    @GetMapping("/getCyclist/{id_cyclist}")
+    public Mono<ResponseEntity<Mono<CyclistDto>>> getCyclistById(@PathVariable("id_cyclist") String id_cyclist) {
+        try {
+            return Mono.just(
+                    ResponseEntity.ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(cyclistService.getCyclistById(id_cyclist))
+            );
+        } catch (Exception e) {
+            throw  new RuntimeException("Error getting cyclist");
+        }
+    }
+
 }

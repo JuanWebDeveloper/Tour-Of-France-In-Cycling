@@ -5,4 +5,5 @@ import com.cycling.api.dto.CyclistDto;
 
 public interface ICyclistService {
     public Mono<CyclistDto> createCyclist(CyclistDto cyclistDto);
+    public Mono<CyclistDto> getCyclistById(String id_cyclist);
 }

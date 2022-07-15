@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 import com.cycling.api.service.implementation.TeamService;
 import com.cycling.api.dto.TeamDto;
@@ -26,6 +27,20 @@ public class TeamController {
             );
         } catch (Exception e) {
             throw  new RuntimeException("Error creating team");
+        }
+    }
+
+    @GetMapping("/getTeams")
+    public Mono<ResponseEntity<Flux<TeamDto>>> getAllTeams() {
+        try {
+            return Mono.just(
+                    ResponseEntity
+                            .ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(teamService.getAllTeams())
+            );
+        } catch (Exception e) {
+            throw  new RuntimeException("Error getting teams");
         }
     }
 }

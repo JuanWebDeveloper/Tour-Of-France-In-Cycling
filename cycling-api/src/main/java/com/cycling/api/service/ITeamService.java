@@ -1,8 +1,8 @@
 package com.cycling.api.service;
-
-import com.cycling.api.dto.TeamDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import com.cycling.api.dto.TeamDto;
 
 public interface ITeamService {
     public Mono<TeamDto> createTeam(TeamDto teamDto);

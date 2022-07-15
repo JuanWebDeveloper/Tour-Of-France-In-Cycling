@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 import com.cycling.api.service.implementation.CyclistService;
 import com.cycling.api.dto.CyclistDto;
@@ -26,6 +27,20 @@ public class CyclistController {
             );
         } catch (Exception e) {
             throw  new RuntimeException("Error creating cyclist");
+        }
+    }
+
+    @GetMapping("/getCyclists")
+    public Mono<ResponseEntity<Flux<CyclistDto>>> getAllCyclists() {
+        try {
+            return Mono.just(
+                    ResponseEntity
+                            .ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(cyclistService.getAllCyclists())
+            );
+        } catch (Exception e) {
+            throw  new RuntimeException("Error getting cyclists");
         }
     }
 

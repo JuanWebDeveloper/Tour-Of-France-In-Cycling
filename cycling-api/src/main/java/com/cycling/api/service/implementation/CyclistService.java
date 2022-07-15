@@ -6,6 +6,7 @@ import com.cycling.api.service.ICyclistService;
 import com.cycling.api.util.mapper.CyclistMapper;
 import com.cycling.api.dto.CyclistDto;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -25,6 +26,15 @@ public class CyclistService implements ICyclistService {
                         .apply(cyclistDto))
                 .map(cyclistMapper
                         .fromCyclistToCyclistDto()
+        );
+    }
+
+    @Override
+    public Flux<CyclistDto> getAllCyclists() {
+        return cyclistRepository.findAll()
+                .map(cyclist -> cyclistMapper
+                        .fromCyclistToCyclistDto()
+                        .apply(cyclist)
         );
     }
 
